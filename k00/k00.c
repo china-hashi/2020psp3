@@ -2,5 +2,6 @@
 
 int main(void)
 {
-    printf("Hello World\n");     //Hello Worldを出力
+    printf("Hello World\n");
+    printf("Hello World\n"); 
 }
