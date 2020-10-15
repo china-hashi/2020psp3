@@ -1,5 +1,5 @@
 # 課題1 レポート
-学籍番号　氏名
+学籍番号:35319032　氏名:橋本千夏
 
 
 ## 課題
@@ -61,15 +61,52 @@ typedef struct {
 
 
 ## ソースコードの説明
+l.71: posがsizeより小さい場合、以下の処理を繰り返す
 
+l.72: もしkeyとarrayCity[pos].idが同じであれば以下の処理をする
 
+l.73: 変数resultにposを代入
 
+l.74: if関数をbreakする
+
+l.78: 変数resultを返す
+
+l.87: right-leftが0以上ならば以下の処理を繰り返す
+
+l.88: posの値をリストの中心にする
+
+l.89: もしkeyとarrayCity[pos].idが同じであれば以下の処理をする
+
+l.90: 変数resultにposを代入
+
+l.91: if関数をbreakする
+
+l.92: もしkeyがarrayCity[pos].idより大きければ以下の処理をする
+
+l.93: leftにpos+1を代入
+
+l.95: 上記２つ以外ならばrightにpos-1を代入
+
+l.99: 変数resultを返す
 
 ## 出力結果
+```
+===== linear search =====
+City ID?42321
+42321, 長崎県, 東彼杵町, 8298, 3886, 4412
+
+===== binary search =====
+City ID?42321
+42321, 長崎県, 東彼杵町, 8298, 3886, 4412
 
 ```
+===== linear search =====
+City ID?43321
+city was not found
 
-```
+===== binary search =====
+City ID?43321
+city was not found
 
 ## 修正履歴
 
