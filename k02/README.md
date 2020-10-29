@@ -1,5 +1,5 @@
 # 課題2 レポート
-学籍番号　氏名
+学籍番号:35319032　氏名:橋本千夏
 
 
 ## 課題
@@ -61,7 +61,7 @@ typedef struct {
 
     (2) SearchCityByName: 市町村を名称で検索する(5点)  
     [入力]
-    - int key: 検索する市町村のID
+    - int key: 検索する市町村の名前
     - City arrayCity: 検索対象の都市別人口データ(配列)
     - int size: データの数  
 
@@ -69,14 +69,45 @@ typedef struct {
     - return値: IDが合致した配列データのindex。IDが一致するデータがない場合は-1。
 
 ## ソースコードの説明
+l.79: 新しい要素のデータ領域を確保し、先頭アドレスをNode型のポインタpNewNodeに返す
+
+l.80: リストに挿入するデータをcityに代入する
+
+l.81: 挿入前のリストの先頭アドレスをpNextに代入する
+
+l.82: pNextにpNewNodeの先頭アドレスを代入する
+
+l.84: pNextを返す
 
 
+l.110: Node型のポインタpSearchにリストの先頭アドレスpListを代入する
+
+l.112: pSearchがNULLとなるまで以下の処理を繰り返す
+
+l.113: もしリスト中のIDと検索するIDが一致したら以下の処理をする
+
+l.114: pCityに一致したデータを代入する
+
+l.115: iを返す
+
+l.117: pSearchに次のリストの先頭アドレスを代入する
+
+l.118: iに1を足す
+
+l.120: 繰り返し処理終了後-1を返す
 
 ## 出力結果
 
 ```
+City ID?42211
+the city was found at 11
+42211, 長崎県, 五島市, 37327, 17339, 19988
+free list. items = 21
 
 ```
+City ID?44444
+sorry, the city was not found
+free list. items = 21
 
 ## 修正履歴
 
