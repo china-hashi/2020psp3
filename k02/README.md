@@ -69,14 +69,8 @@ CHALLENGE2を有効にしてください。
     (2) SearchCityByName: 市町村を名称で検索する(5点)  
     CHALLENGE1を有効にしてください。  
     [入力]
-<<<<<<< HEAD
-    - int key: 検索する市町村の名前
-    - City arrayCity: 検索対象の都市別人口データ(配列)
-    - int size: データの数  
-=======
     - Node* pList: リストの先頭アドレス
     - char* cityName: 検索する市町村の名称
->>>>>>> upstream/master
 
     [出力]  
     - return値: cityNameが合致した場所(先頭を0とする)。cityNameが一致するデータがない場合は-1。

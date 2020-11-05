@@ -94,15 +94,20 @@ int DeleteNodeAt(Node** ppNode, int cn)
     Node* pNode;
     pPrev=*ppNode;
 
-    for(i=0;i<cn-1;i++){
-        pPrev=pPrev->pNext;
+    if(cn==0){
+        pNode=pPrev->pNext;
+        *ppNode=pNode;
+        free(pPrev);
+    }else{
+        for(i=0;i<cn-1;i++){
+            pPrev=pPrev->pNext;
+        }
+        pNode=pPrev;
+        pNode=pNode->pNext;
+        pPrev->pNext=pNode->pNext;
+        free(pNode);
     }
-
-    pNode=pPrev;
-    pNode=pNode->pNext;
-    pPrev->pNext=pNode->pNext;
-    free(pNode);
-
+    
     i=0;
     pNode=*ppNode;
     while(pNode!=NULL){
