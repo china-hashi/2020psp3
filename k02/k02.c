@@ -84,14 +84,44 @@ Node* InsertNewNode(City newCity, Node* pNext)
     return pNext;
 }
 
-#ifdef CHALLENGE1
+//#ifdef CHALLENGE1
 int DeleteNodeAt(Node** ppNode, int cn)
 {
     //  チャレンジ問題1
     //  ここを実装する
+    int i;
+    Node* pPrev;
+    Node* pNode;
+    pPrev=*ppNode;
 
+    if(cn==0){
+        pNode=pPrev->pNext;
+        *ppNode=pNode;
+        free(pPrev);
+    }else{
+        for(i=0;i<cn-1;i++){
+            pPrev=pPrev->pNext;
+        }
+        pNode=pPrev;
+        pNode=pNode->pNext;
+        pPrev->pNext=pNode->pNext;
+        free(pNode);
+    }
+    
+    i=0;
+    pNode=*ppNode;
+    while(pNode!=NULL){
+        pNode=pNode->pNext;
+        i++;
+    }
+
+    if(i==20){
+        printf("SUCCESS\n");
+    }else{
+        printf("ERROR\n");
+    }
 }
-#endif
+//#endif
 
 #ifdef CHALLENGE2
 int SearchCityByName(Node* pList, char* cityName, City* pCity)
@@ -178,12 +208,12 @@ int main(void)
     }
 #endif
 
-#ifdef CHALLENGE2
+//#ifdef CHALLENGE2
     // 特定の場所のノードを削除する
     // cnは直前の検索結果
     DeleteNodeAt(&pTop, cn);
     PrintList(pTop);
-#endif
+//#endif
 
     ReleaseList(pTop);
 
