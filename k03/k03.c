@@ -69,9 +69,9 @@ char* BMSearch(char text[], char key[])
         for(pos=key_len-1;0<=pos;pos--){
             if(text[start+pos]!=key[pos]){
                 prev_start=start;
-                start=start+table[text[start+pos]];
+                start=pos+table[text[start+pos]];
                 if(start<=prev_start){
-                    start=prev_start+1;
+                start=prev_start+1;
                 }
                 break;
             }else if(pos==0){
