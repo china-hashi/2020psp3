@@ -79,14 +79,66 @@ int LoadData(City arrayCity[])
 void BubbleSort(City arrayCity[], int size)
 {
     //  ここを実装する
+    int i,cnt=1;
+    City tmp;
 
+    while(cnt!=0){
+        cnt=0;
+        for(i=0;i<size-1;i++){
+            if(arrayCity[i].total>arrayCity[i+1].total){
+                tmp=arrayCity[i];
+                arrayCity[i]=arrayCity[i+1];
+                arrayCity[i+1]=tmp;
+                cnt++;
+            }
+        }
+    }
 }
 
 
 void QuickSort(City arrayCity[], int left, int right)
 {
     //  ここを実装する
+    if((right-left)>1){
+        int i,j,pivot;
+        City tmp;
 
+        i=left;
+        j=right;
+        pivot=arrayCity[left].seafood;
+
+        while(1){
+            while(i<=right){
+                if(pivot<arrayCity[i].seafood){
+                    break;
+                }else{
+                    i++;
+                }
+            }
+
+            while(j>=left){
+                if(pivot>=arrayCity[j].seafood){
+                    break;
+                }else{
+                    j--;
+                }
+            }
+
+            if(i>=j){
+                break;
+            }else{
+                tmp=arrayCity[i];
+                arrayCity[i]=arrayCity[j];
+                arrayCity[j]=tmp;
+            }
+        }
+
+            tmp=arrayCity[left];
+            arrayCity[left]=arrayCity[j];
+            arrayCity[j]=tmp;
+            return QuickSort(arrayCity,left,j-1);
+            return QuickSort(arrayCity,j+1,right);
+    }
 }
 
 
@@ -127,10 +179,10 @@ int main(void)
     printf("===== Sorted by seafood =====\n");
     QuickSort(arrayCity, 0, MAX_CITY - 1);
     PrintArray(arrayCity, MAX_CITY);
-   
+/*   
 //    MergeSort(arrayCity, 0, MAX_CITY - 1);
 //    HeapSort(arrayCity, MAX_CITY);
-    PrintArray(arrayCity, MAX_CITY);
+    PrintArray(arrayCity, MAX_CITY);*/
 
 
 
