@@ -140,8 +140,8 @@ void QuickSort(City arrayCity[], int left, int right)
             tmp=arrayCity[left];
             arrayCity[left]=arrayCity[j];
             arrayCity[j]=tmp;
-            return QuickSort(arrayCity,left,j-1);
-            return QuickSort(arrayCity,j+1,right);
+            QuickSort(arrayCity,left,j-1);
+            QuickSort(arrayCity,j+1,right);
     }
 }
 
@@ -151,14 +151,91 @@ void HeapSort(City arrayCity[], int size)
 {
     //  チャレンジ問題(1)
     //  ここを実装する
+    void PartialHeap(City arrayCity[], int size, int node)
+    {
+        int left,right;
+        City tmp;
 
+        left=node*2+1;
+        right=node*2+2;
+
+        if(((size<left)&&(size<right)) || ((arrayCity[node].meat<arrayCity[left].meat)&&(arrayCity[node].meat<arrayCity[right].meat)))
+        {
+        
+        }else{
+            if(arrayCity[left].meat<arrayCity[right].meat){
+                tmp=arrayCity[left];
+                arrayCity[left]=arrayCity[node];
+                arrayCity[node]=tmp;
+            }else{
+                tmp=arrayCity[right];
+                arrayCity[right]=arrayCity[node];
+                arrayCity[node]=tmp;
+            }
+            PartialHeap(arrayCity,size,node);
+        }
+    }
+    void BuildHeap(City arrayCity[], int size)
+    {
+        int last_node,i;
+
+        last_node=size/2-1;
+        i=last_node;
+
+        while(i>=0){
+            PartialHeap(arrayCity,size,i);
+            i--;
+        }
+    }
+
+    int i;
+    City tmp;
+
+    BuildHeap(arrayCity,size);
+
+    while(size>0){
+        tmp=arrayCity[0];
+        arrayCity[0]=arrayCity[size];
+        arrayCity[size]=tmp;
+        
+        BuildHeap(arrayCity,size-1);
+        size--;
+    }
 }
-
 
 void MergeSort(City arrayCity[], int left, int right)
 {
     //  チャレンジ問題2
     //  ここを実装する
+    int mid,i;
+    int j=0;
+    int k=0;
+    City left_buff[mid-left+1],right_buff[right-mid];
+
+    if(right-left>0){
+        mid=left+(right-left)/2;
+        MergeSort(arrayCity,left,mid);
+        MergeSort(arrayCity,mid+1,right);
+
+        for(i=0;i<=mid;i++){
+            left_buff[i]=arrayCity[i];
+        }
+
+        for(i=mid+1;i<=right;i++){
+            right_buff[i]=arrayCity[i];
+        }
+
+        for(i=0;i<=right;i++){
+            if(left_buff[j].liquor<right_buff[k].liquor){
+                arrayCity[i]=left_buff[j];
+                j++;
+            }else{
+                arrayCity[i]=right_buff[k];
+                k++;
+            }
+        }
+        
+    }
 
 }
 
@@ -183,10 +260,10 @@ int main(void)
     printf("===== Sorted by seafood =====\n");
     QuickSort(arrayCity, 0, MAX_CITY - 1);
     PrintArray(arrayCity, MAX_CITY);
-/*   
-//    MergeSort(arrayCity, 0, MAX_CITY - 1);
-//    HeapSort(arrayCity, MAX_CITY);
-    PrintArray(arrayCity, MAX_CITY);*/
+   
+    MergeSort(arrayCity, 0, MAX_CITY - 1);
+    HeapSort(arrayCity, MAX_CITY);
+//    PrintArray(arrayCity, MAX_CITY);
 
 
 
