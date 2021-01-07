@@ -152,13 +152,13 @@ void PartialHeap(City arrayCity[], int size, int node)
     left=node*2+1;
     right=node*2+2;
 
-    if(arrayCity[left].meat>arrayCity[node].meat){
+    if((left>=size-1)||(arrayCity[left].meat>arrayCity[node].meat)){
         index=node;
     }else{
         index=left;
     }
 
-    if(arrayCity[right].meat<arrayCity[index].meat){
+    if((right<size)&&(arrayCity[right].meat<arrayCity[index].meat)){
         index=right;
     }
 
@@ -224,11 +224,11 @@ void MergeSort(City arrayCity[], int left, int right)
             right_buff[i-(mid+1)]=arrayCity[i];
         }
 
-        for(i=0;i<=right;i++){
-            if(j==mid-left){
+        for(i=left;i<=right;i++){
+            if(j==mid-left+1){
                 arrayCity[i]=right_buff[k];
                 k++;
-            }else if(k==right-mid-1){
+            }else if(k==right-mid){
                 arrayCity[i]=left_buff[j];
                 j++;                
             }else if(left_buff[j].liquor<right_buff[k].liquor){
