@@ -266,9 +266,10 @@ int main(void)
 
     printf("===== Sorted by liquor =====\n");  
     MergeSort(arrayCity, 0, MAX_CITY - 1);
+    PrintArray(arrayCity, MAX_CITY);
     printf("===== Sorted by meat =====\n");
     HeapSort(arrayCity, MAX_CITY);
-//    PrintArray(arrayCity, MAX_CITY);
+    PrintArray(arrayCity, MAX_CITY);
 
 
 
