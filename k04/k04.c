@@ -152,7 +152,7 @@ void PartialHeap(City arrayCity[], int size, int node)
     left=node*2+1;
     right=node*2+2;
 
-    if((left>=size-1)||(arrayCity[left].meat>arrayCity[node].meat)){
+    if((left>size-1)||(arrayCity[left].meat>arrayCity[node].meat)){
         index=node;
     }else{
         index=left;
