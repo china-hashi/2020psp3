@@ -1,5 +1,5 @@
 # 課題5 レポート
-学生番号　氏名
+学生番号：35319032　氏名：橋本千夏
 
 
 ## 課題
@@ -98,12 +98,87 @@ int AdjacencyMatrix[MAX_STATIONS][MAX_STATIONS] = {
 
 ## ソースコードの説明
 
+l.112,113: visitedを初期化
 
+1.117: 出発点をスタックにプッシュ
+
+l.119: スタックが空でなければ以下の処理を繰り返す
+
+l.120: スタックから1つポップ
+
+l.122: ポップしたものが行ったことのない場所であれば以下の処理をする
+
+l.123: 行ったことにする
+
+l.127~129: そこから行ける場所をスタックにプッシュ
+
+l.135~139: もしすべての場所に行っていなければエラー文を出力
+
+
+l.212,213: visitedを初期化
+
+l.217: 出発点をキューに入れる
+
+l.219: キューが空でなければ以下の処理を繰り返す
+
+l.220: キューから1つ取り出す
+
+l.222: 取り出したものが行ったことのない場所であれば以下の処理をする
+
+l.223: 行ったことにする
+
+l.227~229: そこから行ける場所をキューにいれる
+
+l.235~239: もしすべての場所に行っていなければエラー文を出力
+
+
+l.255,256: costの値を無限大にする
+
+l.258: スタート地点のcostを0にする
+
+l.260,261: fixedの値を0にする
+
+l.266~273: 行ったことのない場所の中から最小のcostを探す
+
+l.276: 最小のcostの場所を確定
+
+l.278,279: 確定した場所がgoalならばcostを返す
+
+l.281~283: そこから行ける確定していない場所を探す
+
+l.284~286: costを更新する
 
 ## 出力結果
 
 ```
-
+===== Searched by Depth =====
+Current station is 赤迫
+Current station is 長崎大学前
+Current station is 長崎駅前
+Current station is 市民会館
+Current station is 蛍茶屋
+Current station is 崇福寺
+Current station is 新地中華街
+Current station is 石橋
+All station was visited.
+===== Searched by Breadth =====
+Current station is 赤迫
+Current station is 長崎大学前
+Current station is 長崎駅前
+Current station is 新地中華街
+Current station is 市民会館
+Current station is 石橋
+Current station is 崇福寺
+Current station is 蛍茶屋
+All station was visited.
+===== Searched by Dijkstra =====
+Current station is 赤迫
+Current station is 長崎大学前
+Current station is 長崎駅前
+Current station is 市民会館
+Current station is 新地中華街
+Current station is 蛍茶屋
+Time Required: 32
 ```
 
 ## 修正履歴

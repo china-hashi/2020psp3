@@ -106,7 +106,41 @@ int StackIsEmpty(void)
 void DepthFirstSearch(int size, int matrix[size][size], int start)
 {
     //  ここを実装する
+    int visited[size];
+    int i,index;
 
+    for(i=0;i<size;i++){
+        visited[i]=0;
+    }
+
+    StackInit();
+    StackPush(start);
+
+    while(StackIsEmpty()==FALSE){
+        index=StackPop();
+
+        if(visited[index]==0){
+            visited[index]=1;
+            printf("Current station is ");
+            PrintStationName(index);
+
+            for(i=0;i<size;i++){
+                if(matrix[index][i]!=0){
+                    StackPush(i);
+                }
+            }
+        }
+    }
+
+    for(i=0;i<size;i++){
+        if(visited[i]!=1){
+            printf("Error! All station was not visited.\n");
+        }
+    }
+
+    if(i==size){
+        printf("All station was visited.\n");
+    }
 }
 
 
@@ -172,7 +206,41 @@ int QueueIsEmpty()
 void BreadthFirstSearch(int size, int matrix[size][size], int start)
 {
     //  ここを実装する
+    int visited[size];
+    int i,index;
 
+    for(i=0;i<size;i++){
+        visited[i]=0;
+    }
+
+    InitQueue();
+    EnQueue(start);
+
+    while(QueueIsEmpty()==FALSE){
+        index=DeQueue();
+
+        if(visited[index]==0){
+            visited[index]=1;
+            printf("Current station is ");
+            PrintStationName(index);
+
+            for(i=0;i<size;i++){
+                if(matrix[index][i]!=0){
+                    EnQueue(i);
+                }
+            }
+        }
+    }
+
+    for(i=0;i<size;i++){
+        if(visited[i]!=1){
+            printf("Error! All station was not visited.\n");
+        }
+    }
+
+    if(i==size){
+        printf("All station was visited.\n");
+    }
 }
 
 
@@ -181,7 +249,47 @@ void BreadthFirstSearch(int size, int matrix[size][size], int start)
 int SearchGraphByDijkstra(int start, int goal, int size, int matrix[size][size])
 {
     //  ここを実装する
+    int cost[size],fixed[size],from[size];
+    int i,min,min_index,time;
 
+    for(i=0;i<size;i++){
+        cost[i]=9999;
+    }
+    cost[start]=0;
+
+    for(i=0;i<size;i++){
+        fixed[i]=0;
+    }
+    
+    while(1){
+        min=9999;
+        for(i=0;i<size;i++){
+            if(fixed[i]==0){
+                if(cost[i]<min){
+                    min=cost[i];
+                    min_index=i;
+                }
+            }
+        }
+        printf("Current station is ");
+        PrintStationName(min_index);
+        fixed[min_index]=1;
+
+        if(min_index==goal){
+            return cost[goal];
+        }else{
+            for(i=0;i<size;i++){
+                if(matrix[min_index][i]>0){
+                    if(fixed[i]==0){
+                        time=cost[min_index]+matrix[min_index][i];
+                        if(cost[i]>time){
+                            cost[i]=time;
+                        }
+                    }
+                }
+            }    
+        }
+    }
 }
 
 
@@ -190,9 +298,12 @@ int main(void)
 {
     int cost;
 
+    printf("===== Searched by Depth =====\n");
     DepthFirstSearch(MAX_STATIONS, AdjacencyMatrix, 0);
+    printf("===== Searched by Breadth =====\n");
     BreadthFirstSearch(MAX_STATIONS, AdjacencyMatrix, 0);
-
+    
+    printf("===== Searched by Dijkstra =====\n");
     cost = SearchGraphByDijkstra(0, 7, MAX_STATIONS, AdjacencyMatrix);
     printf("Time Required: %d\n", cost);
 
