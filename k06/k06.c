@@ -72,29 +72,44 @@ void DynamicProgLimited(Menu arrayItem[], int items, int nap_size)
     int history[items+1][nap_size + 1];     //  履歴を保存するテーブル(選択したメニューを探すときに使用)
 
     //　ここを実装する
-    int i,j,k,prev,renew;
+    int i,j,k,h,prev,renew;
+    int pre_j,cur_j;
 
-    for(i=0;i<items;i++){
-        for(j=0;j<nap_size;j++){
+    for(i=0;i<=items;i++){
+        for(j=0;j<nap_size+1;j++){
             nap_value[i][j]=0;
+            history[i][j]=0;
         }
     }
 
-    for(i=1;i<items;i++){
+    for(i=1;i<=items;i++){
         for(k=1;k<arrayItem[i-1].price;k++){
             nap_value[i][k]=nap_value[i-1][k];
+            history[i][k]=k;
         }
-        for(j=1;j<nap_size;j++){
+        for(j=k;j<=nap_size;j++){
             prev=nap_value[i-1][j];
             renew=nap_value[i-1][j-arrayItem[i-1].price]+arrayItem[i-1].calorie;
             if(renew>prev){
                 nap_value[i][j]=renew;
+                history[i][j]=(j-arrayItem[i-1].price);
             }else{
                 nap_value[i][j]=prev;
+                history[i][j]=j;
             }
         }
     }
-    printf("Max calorie is %d\n",nap_value[i][j]);
+    printf("Max calorie is %d\n",nap_value[i-1][j-1]);
+
+    cur_j=j-1;
+    while(i!=1){
+        pre_j=history[i-1][cur_j];
+        if(pre_j=!cur_j){
+            printf("%s\n",arrayItem[i-1].name);
+        }
+        cur_j=pre_j;
+        i--;
+    }
 }
 
 
