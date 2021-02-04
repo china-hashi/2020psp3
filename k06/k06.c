@@ -99,12 +99,13 @@ void DynamicProgLimited(Menu arrayItem[], int items, int nap_size)
             }
         }
     }
-    printf("Max calorie is %d\n",nap_value[i-1][j-1]);
+    printf("Max calorie is %d\n",nap_value[items][nap_size]);
 
-    cur_j=j-1;
+    cur_j=nap_size;
+    i=items;
     while(i!=1){
-        pre_j=history[i-1][cur_j];
-        if(pre_j=!cur_j){
+        pre_j=history[i][cur_j];
+        if(pre_j!=cur_j){
             printf("%s\n",arrayItem[i-1].name);
         }
         cur_j=pre_j;
